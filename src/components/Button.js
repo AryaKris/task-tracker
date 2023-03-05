@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Button = () => {
+export const Button = () => {
   return (
     <div>
-      
+          <button className='btn' style={{ backgroundColor: "green" }}>Add</button>
     </div>
   )
 }
 
-export default Button
+
