@@ -1,13 +1,13 @@
 import React from 'react'
-import {Button} from './Button'
+import {Button} from "./Button"
 
-export const Header = () => {
+export const Header = ({toggleAdd, showAdd}) => {
   return (
     <div>
           <header className='header'>
               <h1>Task Tacker</h1>
-              <Button />
-
+              <Button click = {toggleAdd} text = {showAdd ? 'close' : 'Add'} color = {showAdd ? 'Red' : 'Green'}/>
+             
           </header>
     </div>
   )
