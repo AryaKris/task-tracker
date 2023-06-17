@@ -16,6 +16,10 @@ function toggleAddTask(){
 
   setshowAddTask(!showAddTask)
 }
+//adding new function addTask with one argument which will accept an object
+function addTask(task){
+  console.log(task);
+}
 
 
   const [data, setTasks] = useState( [
@@ -46,7 +50,8 @@ function toggleAddTask(){
     <div className="container">
 
       <Header toggleAdd = {toggleAddTask} showAdd = {showAddTask}/>
-      {showAddTask&& <AddTask/>}
+      {/* {pass the 'addTask' function to the onAdd Props in the <AddTask /> component } */}
+      {showAddTask&& <AddTask onAdd = {addTask}/>}
       <Tasks onDelete ={deleteTask} tasks={data}/>
      
     </div>
