@@ -3,24 +3,28 @@ import React from "react";
 import { useState } from "react";
 
 //Add new props called "onAdd" 
-export const AddTask = ({onAdd}) => {
+export const AddTask = ({ onAdd }) => {
   //add three useState variable 
   const [text, setText] = useState('');
   const [day, setDay] = useState('');
   const [reminder, setReminder] = useState(false);
 
   //function onSubmit to handle the form submit
-  const onSubmit= (e)=>{
-e.preventdefault();
-onAdd({text,day,reminder})
+
+  const onSubmit = (e) => {
+    e.preventdefault();
+    onAdd({ text, day, reminder })
+    setText(''); // To set text value as empty
+    setDay(''); // To set day value as empty
+    setReminder(false); // To set reminder checkbox unselected
 
   }
-  
+
 
   return (
     //Add value attribute ,onChange event on all three inputs (text,day,reminder)
     <div>
-      <form className="add-form" onSubmit={onSubmit}> 
+      <form className="add-form" onSubmit={onSubmit}>
         <div className="form-control">
           <label>Task</label>
           <input type='text'
