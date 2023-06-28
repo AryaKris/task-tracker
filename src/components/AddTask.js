@@ -12,7 +12,7 @@ export const AddTask = ({ onAdd }) => {
   //function onSubmit to handle the form submit
 
   const onSubmit = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     onAdd({ text, day, reminder })
     setText(''); // To set text value as empty
     setDay(''); // To set day value as empty
