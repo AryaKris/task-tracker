@@ -60,8 +60,13 @@ function App() {
 
 
 
-  const deleteTask = (id) => {
-    //   setTasks(tasks.filter((task) => task.id!==id))
+  const deleteTaskfromAPI = async(id) => {
+    
+    await fetch(`http://localhost:5000/tasks/${id}`,{
+      method: 'DELETE'
+    })
+
+   updateData(data.filter((task) => task.id!==id))
   }
   return (
     <div className="container">
@@ -69,7 +74,7 @@ function App() {
       <Header toggleAdd={toggleAddTask} showAdd={showAddTask} />
       {/* {pass the 'addTask' function to the onAdd Props in the <AddTask /> component } */}
       {showAddTask && <AddTask onAdd={addTask} />}
-      <Tasks onDelete={deleteTask} tasks={data} />
+      <Tasks deleteTask={deleteTaskfromAPI} tasks={data} />
 
     </div>
   );
