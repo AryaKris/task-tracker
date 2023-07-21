@@ -3,12 +3,12 @@ import React from 'react'
 //
 import { Task } from "./Task"
 
-export const Tasks = ({ tasks, deleteTask }) => {
+export const Tasks = ({ tasks, deleteTask, onToggle }) => {
   return (
     <>
-      {tasks.map((abc) => (
+      {tasks.map((data) => (
         
-        <Task abc ={deleteTask} item = {abc} key ={abc.id}/>
+        <Task delete1 ={deleteTask} item = {data} key ={data.id} toggleUpdate={onToggle}/>
 
       ))
 

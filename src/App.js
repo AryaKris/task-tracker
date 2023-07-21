@@ -5,11 +5,17 @@ import { Tasks } from "./components/Tasks"
 import { AddTask } from "./components/AddTask"
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import About from './components/About';
+import Support from './components/Support';
 
 
 
 function App() {
   //usestate, 
+  const [data, updateData] = useState([])
+
   const [showAddTask, setshowAddTask] = useState(false);
   function toggleAddTask() {
 
@@ -43,7 +49,6 @@ function App() {
     return true;
   }
 
-  const [data, updateData] = useState([])
 
   useEffect(() => {
     const getTasks = async () => {
@@ -60,23 +65,41 @@ function App() {
 
 
 
-  const deleteTaskfromAPI = async(id) => {
-    
-    await fetch(`http://localhost:5000/tasks/${id}`,{
+  const deleteTaskfromAPI = async (id) => {
+
+    console.log(id);
+
+    await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'DELETE'
     })
 
-   updateData(data.filter((task) => task.id!==id))
+    updateData(data.filter((task) => task.id !== id))
+  }
+
+  const updateReminder = async(id) =>{
+    console.log(id)
+
   }
   return (
-    <div className="container">
+    <BrowserRouter>
+      <div className="container">
 
-      <Header toggleAdd={toggleAddTask} showAdd={showAddTask} />
-      {/* {pass the 'addTask' function to the onAdd Props in the <AddTask /> component } */}
-      {showAddTask && <AddTask onAdd={addTask} />}
-      <Tasks deleteTask={deleteTaskfromAPI} tasks={data} />
+        <Header toggleAdd={toggleAddTask} showAdd={showAddTask} />
+        {/* {pass the 'addTask' function to the onAdd Props in the <AddTask /> component } */}
+        <Routes>
+          <Route path="/" element={
+            <>
+              {showAddTask && <AddTask onAdd={addTask} />}
+              <Tasks deleteTask={deleteTaskfromAPI} tasks={data} onToggle ={updateReminder} />
+            </>
+          } />
+          <Route path="about" element={<About />} />
+          <Route path = "support" element = {<Support/>}/>
+        </Routes>
+        <Footer />
 
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

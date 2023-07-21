@@ -11,7 +11,7 @@ export const AddTask = ({ onAdd }) => {
 
   //function onSubmit to handle the form submit
 
-  const onSubmit = (e) => {
+  const formSubmit = (e) => {
     e.preventDefault();
     onAdd({ text, day, reminder })
     setText(''); // To set text value as empty
@@ -24,7 +24,7 @@ export const AddTask = ({ onAdd }) => {
   return (
     //Add value attribute ,onChange event on all three inputs (text,day,reminder)
     <div>
-      <form className="add-form" onSubmit={onSubmit}>
+      <form className="add-form" onSubmit={formSubmit}>
         <div className="form-control">
           <label>Task</label>
           <input type='text'
